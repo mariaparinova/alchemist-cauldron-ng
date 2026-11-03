@@ -1,0 +1,14 @@
+@use 'variables';
+
+body {
+  margin: 0 auto;
+  max-width: 1440px;
+  color: variables.$color-text;
+  font-family: variables.$font-family;
+  background-color: variables.$color-bg;
+}
+
+.icon {
+  width: variables.$icon-size;
+  height: variables.$icon-size;
+}

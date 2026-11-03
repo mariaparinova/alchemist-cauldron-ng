@@ -1,0 +1,30 @@
+@use 'variables';
+@use 'breakpoints';
+
+$app-gap: 20px;
+$main-padding: 0 40px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: $app-gap;
+  min-height: 100vh;
+  background-color: variables.$color-bg;
+  border-left: variables.$app-border;
+  border-right: variables.$app-border;
+}
+
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $app-gap;
+  padding: $main-padding;
+}
+
+@media screen and (max-width: breakpoints.$tablet) {
+  .main {
+    padding: 0 12px;
+  }
+}
