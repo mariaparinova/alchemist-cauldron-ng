@@ -25,6 +25,11 @@
     padding: 8px;
   }
 
+  .header .icon {
+    width: variables.$icon-size-s;
+    height: variables.$icon-size-s;
+  }
+
   .header > * {
     gap: 4px;
   }

@@ -1,0 +1,64 @@
+@use 'variables';
+@use 'breakpoints';
+
+$timer-info-gap: 4px;
+$timer-bar-width: 120px;
+$timer-bar-height: 6px;
+
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pause-container {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+}
+
+.timer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $timer-info-gap;
+}
+
+.timer-bar {
+  width: $timer-bar-width;
+  height: $timer-bar-height;
+  overflow: hidden;
+  background-color: variables.$color-bg-01;
+  border-radius: variables.$border-radius-xs;
+}
+
+.timer-bar-fill {
+  width: 0;
+  height: 100%;
+  background-color: variables.$color-accent-1;
+  transition: width 0.25s linear;
+}
+
+.timer-warning {
+  color: variables.$color-fail;
+
+  .timer-bar-fill {
+    background-color: variables.$color-fail;
+  }
+}
+
+@media screen and (max-width: breakpoints.$mobile) {
+  .pause-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timer-container {
+    gap: 4px;
+  }
+
+  .timer-icon {
+    display: none;
+  }
+}
