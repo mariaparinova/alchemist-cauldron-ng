@@ -1,0 +1,9 @@
+@use 'breakpoints';
+@use 'variables';
+
+@mixin header-icon {
+  @media screen and (max-width: breakpoints.$mobile) {
+    width: variables.$icon-size-s;
+    height: variables.$icon-size-s;
+  }
+}

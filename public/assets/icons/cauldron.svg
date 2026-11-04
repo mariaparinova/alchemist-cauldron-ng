@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="256" height="256">
+    <defs>
+        <!-- Background Radial Aura Glow -->
+        <radialGradient id="cauldronAura" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#059669" stop-opacity="0.55"/>
+            <stop offset="65%" stop-color="#059669" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Metallic Pot Gradient -->
+        <linearGradient id="metalBody" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#465163"/>
+            <stop offset="40%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#000b1d"/>
+        </linearGradient>
+
+        <!-- Metallic Open Rim Gradient -->
+        <linearGradient id="metalRim" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#465163"/>
+            <stop offset="50%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#000b1d"/>
+        </linearGradient>
+
+        <!-- Glowing Liquid Surface Gradient -->
+        <radialGradient id="liquidPool" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#34d399"/>
+            <stop offset="70%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#009159"/>
+        </radialGradient>
+
+        <!-- Gold Accent Ring Gradient -->
+        <linearGradient id="accentGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFE082"/>
+            <stop offset="50%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#B45309"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Background Aura -->
+    <circle cx="64" cy="68" r="54" fill="url(#cauldronAura)"/>
+
+    <!-- Static Rising Steam Vectors -->
+    <g opacity="0.6">
+        <path d="M48 40 Q42 26 46 14 T44 4" stroke="#34d399" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <path d="M64 42 Q72 28 66 16 T68 2" stroke="#34d399" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M80 40 Q84 26 78 14 T82 6" stroke="#34d399" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </g>
+
+    <!-- Metallic Legs -->
+    <!-- Left Leg -->
+    <path d="M28 88 L18 112 Q14 118 22 118 Q30 118 34 100 Z" fill="#000b1d" stroke="#000009" stroke-width="1.5"/>
+    <path d="M20 112 Q26 110 30 96" stroke="#465163" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+    <!-- Right Leg -->
+    <path d="M100 88 L110 112 Q114 118 106 118 Q98 118 94 100 Z" fill="#000b1d" stroke="#000009" stroke-width="1.5"/>
+    <path d="M108 112 Q102 110 98 96" stroke="#465163" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+    <!-- Center Support Leg -->
+    <path d="M58 98 L60 119 Q64 122 68 119 L70 98 Z" fill="#00000e"/>
+
+    <!-- Left Ring Handle -->
+    <g id="left-handle">
+        <path d="M18 56 C6 56 6 78 18 78" fill="none" stroke="url(#accentGold)" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="21" cy="67" r="4.5" fill="url(#metalBody)" stroke="url(#accentGold)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Right Ring Handle -->
+    <g id="right-handle">
+        <path d="M110 56 C122 56 122 78 110 78" fill="none" stroke="url(#accentGold)" stroke-width="4.5" stroke-linecap="round"/>
+        <circle cx="107" cy="67" r="4.5" fill="url(#metalBody)" stroke="url(#accentGold)" stroke-width="1.5"/>
+    </g>
+
+    <!-- Bulbous Open Cauldron Body -->
+    <path d="M22 48 C16 72 26 104 64 104 C102 104 112 72 106 48 Z" fill="url(#metalBody)" stroke="#000b1d" stroke-width="2"/>
+
+    <!-- Specular Shimmer Highlights & Shadows -->
+    <path d="M26 54 C20 72 30 94 44 98 C32 94 25 78 29 56 Z" fill="#FFFFFF" opacity="0.12"/>
+    <path d="M102 54 C108 72 98 94 84 98 C96 94 103 78 99 56 Z" fill="#000000" opacity="0.25"/>
+
+    <!-- Gold Decorative Band with Rivets -->
+    <path d="M20 66 C40 73 88 73 108 66 C106 71 96 76 64 76 C32 76 22 71 20 66 Z" fill="url(#accentGold)" opacity="0.9"/>
+    <!-- Rivet accents -->
+    <circle cx="32" cy="70" r="1.8" fill="#451A03"/>
+    <circle cx="48" cy="72" r="1.8" fill="#451A03"/>
+    <circle cx="64" cy="73" r="1.8" fill="#451A03"/>
+    <circle cx="80" cy="72" r="1.8" fill="#451A03"/>
+    <circle cx="96" cy="70" r="1.8" fill="#451A03"/>
+
+
+    <!-- Front Rune Emblem -->
+    <g transform="translate(64, 87)">
+        <circle cx="0" cy="0" r="7" fill="#000009" stroke="url(#accentGold)" stroke-width="1.5"/>
+        <polygon points="0,-5 4,3 -4,3" fill="none" stroke="#34d399" stroke-width="1.2"/>
+        <polygon points="0,5 -4,-3 4,-3" fill="none" stroke="#34d399" stroke-width="1.2"/>
+        <circle cx="0" cy="0" r="1.8" fill="#34d399"/>
+    </g>
+
+    <!-- Dark Inner Pot Cavity (Revealed by Open Top) -->
+    <ellipse cx="64" cy="46" rx="42" ry="12" fill="#000000"/>
+
+    <!-- Open Top Liquid Surface -->
+    <g>
+        <ellipse cx="64" cy="46" rx="40" ry="10" fill="url(#liquidPool)"/>
+        <!-- Liquid Inner Rim Edge -->
+        <ellipse cx="64" cy="46" rx="36" ry="7.5" fill="none" stroke="#34d399" stroke-width="1.5" opacity="0.75"/>
+        <!-- Surface Light Reflection Arc -->
+        <path d="M34 46 Q64 41 94 46" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.4"/>
+    </g>
+
+    <!-- Static Magical Bubbles Floating inside Liquid -->
+    <g id="static-bubbles">
+        <circle cx="48" cy="43" r="3.5" fill="#34d399" stroke="#009b63" stroke-width="0.8"/>
+        <circle cx="46.5" cy="41.8" r="1" fill="#FFFFFF" opacity="0.85"/>
+
+        <circle cx="62" cy="44" r="5" fill="#34d399" stroke="#009b63" stroke-width="0.8"/>
+        <circle cx="60" cy="42" r="1.5" fill="#FFFFFF" opacity="0.85"/>
+
+        <circle cx="76" cy="43" r="4" fill="#34d399" stroke="#009b63" stroke-width="0.8"/>
+        <circle cx="74.2" cy="41.2" r="1.2" fill="#FFFFFF" opacity="0.85"/>
+
+        <circle cx="54" cy="40" r="2" fill="#34d399" opacity="0.9"/>
+        <circle cx="70" cy="39" r="2.8" fill="#34d399" opacity="0.9"/>
+        <circle cx="41" cy="45" r="1.8" fill="#34d399" opacity="0.8"/>
+        <circle cx="83" cy="44" r="2.2" fill="#34d399" opacity="0.8"/>
+    </g>
+
+    <!-- Open Metallic Heavy Beveled Upper Rim -->
+    <path d="M20 46 C20 38 108 38 108 46 C108 54 20 54 20 46 Z" fill="url(#metalRim)" stroke="#000b1d" stroke-width="2"/>
+    <ellipse cx="64" cy="44" rx="42" ry="7" fill="none" stroke="#465163" stroke-width="1.5" opacity="0.6"/>
+    <ellipse cx="64" cy="48" rx="42" ry="7" fill="none" stroke="#000b1d" stroke-width="2" opacity="0.8"/>
+</svg>

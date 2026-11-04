@@ -1,0 +1,12 @@
+@use 'variables';
+
+$footer-padding: 8px 20px;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $footer-padding;
+  border-top: variables.$app-border;
+  border-bottom: variables.$app-border;
+}

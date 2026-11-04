@@ -1,0 +1,59 @@
+@use 'variables';
+
+$button-padding: 8px 32px;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: variables.$border-radius-s;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+.button.primary {
+  padding: $button-padding;
+  font-size: variables.$font-size-s;
+  font-weight: 600;
+  color: variables.$color-accent-2;
+  text-transform: capitalize;
+  background-color: variables.$color-bg;
+  border: 1px solid variables.$color-accent-2;
+
+  &:disabled {
+    border-color: variables.$color-border;
+    color: variables.$color-text;
+  }
+}
+
+.icon-button {
+  padding: 4px;
+  background-color: transparent;
+  border: 1px solid variables.$color-border;
+}
+
+.shelf-button {
+  background-color: transparent;
+  border: 1px solid variables.$color-border;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button.primary:hover:not(:disabled) {
+    color: variables.$color-accent-2-light;
+    border-color: variables.$color-accent-2-light;
+  }
+
+  .icon-button:hover:not(:disabled),
+  .shelf-button:hover:not(:disabled) {
+    border-color: variables.$color-accent-2;
+  }
+}
+
+.button[hidden] {
+  display: none;
+}

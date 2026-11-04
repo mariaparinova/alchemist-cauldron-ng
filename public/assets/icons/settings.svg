@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-full h-full">
+    <!-- Gear Main Cog Wheel -->
+    <path d="M28 6H36V12H28V6ZM44.7 10.5L50.4 16.2L46.1 20.5L40.4 14.8L44.7 10.5ZM52 28V36H46V28H52ZM46.1 43.5L50.4 47.8L44.7 53.5L40.4 49.2L46.1 43.5ZM36 58H28V52H36V58ZM19.3 53.5L13.6 47.8L17.9 43.5L23.6 49.2L19.3 53.5ZM12 36V28H18V36H12ZM17.9 20.5L13.6 16.2L19.3 10.5L23.6 14.8L17.9 20.5Z" fill="#64748B"/>
+    <!-- Inner Circular Hub -->
+    <circle cx="32" cy="32" r="18" fill="#475569"/>
+    <circle cx="32" cy="32" r="15" fill="#94A3B8"/>
+    <!-- Center Hole -->
+    <circle cx="32" cy="32" r="7" fill="#0F172A"/>
+    <!-- Bevel Highlights -->
+    <circle cx="32" cy="32" r="15" fill="none" stroke="#CBD5E1" stroke-width="1.5" opacity="0.5"/>
+</svg>

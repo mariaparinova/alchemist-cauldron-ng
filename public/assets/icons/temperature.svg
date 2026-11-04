@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-full h-full">
+    <!-- Glow Background -->
+    <circle cx="32" cy="46" r="14" fill="#EF4444" opacity="0.2"/>
+    <!-- Glass Tube Outer Frame -->
+    <rect x="26" y="8" width="12" height="38" rx="6" fill="#334155" stroke="#475569" stroke-width="2"/>
+    <circle cx="32" cy="46" r="10" fill="#334155" stroke="#475569" stroke-width="2"/>
+    <!-- Mercury Fluid Inner -->
+    <rect x="29" y="16" width="6" height="30" rx="3" fill="#EF4444"/>
+    <circle cx="32" cy="46" r="7" fill="#DC2626"/>
+    <circle cx="30" cy="44" r="2.5" fill="#FCA5A5"/>
+    <!-- Measurement Scale Lines -->
+    <line x1="42" y1="16" x2="46" y2="16" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+    <line x1="42" y1="23" x2="48" y2="23" stroke="#EF4444" stroke-width="2" stroke-linecap="round"/>
+    <line x1="42" y1="30" x2="46" y2="30" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+    <line x1="42" y1="37" x2="48" y2="37" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+    <!-- Tube Highlight -->
+    <path d="M28 14V38" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+</svg>

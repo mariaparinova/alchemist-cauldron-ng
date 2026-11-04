@@ -1,0 +1,64 @@
+@use 'breakpoints';
+
+$board-gap: 20px;
+$recipe-max-width: 320px;
+$cauldron-with-stats-gap: 24px;
+$cauldron-max-width: 256px;
+
+:host {
+  display: grid;
+  grid-template-columns: auto 1fr minmax(0, $recipe-max-width);
+  grid-template-areas: 'cabinet cauldron-with-stats recipe';
+  align-items: center;
+  gap: $board-gap;
+}
+
+app-cabinet {
+  grid-area: cabinet;
+}
+
+app-recipe {
+  grid-area: recipe;
+}
+
+.cauldron-with-stats {
+  grid-area: cauldron-with-stats;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $cauldron-with-stats-gap;
+}
+
+.cauldron-image {
+  width: 100%;
+  max-width: $cauldron-max-width;
+}
+
+@media screen and (max-width: breakpoints.$tablet) {
+  :host {
+    grid-template-columns: minmax(0, 1fr) minmax(0, $recipe-max-width);
+    grid-template-areas:
+      'cabinet cabinet'
+      'cauldron-with-stats recipe';
+  }
+
+  .cauldron-with-stats {
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: breakpoints.$mobile) {
+  :host {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'cabinet'
+      'recipe'
+      'cauldron-with-stats';
+  }
+
+  .cauldron-with-stats {
+    flex-direction: row;
+    justify-content: center;
+    gap: $cauldron-with-stats-gap;
+  }
+}

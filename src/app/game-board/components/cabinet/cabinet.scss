@@ -1,0 +1,99 @@
+@use 'variables' as variables;
+@use 'breakpoints' as breakpoints;
+
+$cabinet-width: 254px;
+$cabinet-border: 2px solid variables.$color-border;
+$shelf-gap: 4px;
+$shelf-padding: 8px 12px;
+$shelf-border: 2px solid variables.$color-border;
+$shelf-min-height: 81px;
+$shelf-name-max-width: 124px;
+$shelf-info-gap: 12px;
+$shelf-details-gap: 4px;
+$shelf-stat-gap: 2px;
+$shelf-stat-padding: 2px 8px 2px 0;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: $cabinet-width;
+  border: $cabinet-border;
+  border-radius: variables.$border-radius-s;
+  background-color: variables.$color-bg-01;
+}
+
+.shelf {
+  display: flex;
+  align-items: end;
+  gap: $shelf-gap;
+  padding: $shelf-padding;
+  min-height: $shelf-min-height;
+  border: $shelf-border;
+}
+
+.shelf-out-of-stock {
+  opacity: 0.5;
+
+  .shelf-name,
+  .shelf-amount {
+    color: variables.$color-text;
+  }
+}
+
+.shelf-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $shelf-info-gap;
+}
+
+.shelf-name {
+  max-width: $shelf-name-max-width;
+  font-size: variables.$font-size-xs;
+  text-align: center;
+}
+
+.shelf-details {
+  display: flex;
+  gap: $shelf-details-gap;
+}
+
+.shelf-stat {
+  display: flex;
+  align-items: center;
+  gap: $shelf-stat-gap;
+  padding: $shelf-stat-padding;
+  font-size: variables.$font-size-xxs;
+  background-color: variables.$color-bg-01;
+  border-radius: variables.$border-radius-xs;
+}
+
+.shelf-stat-icon {
+  width: variables.$icon-size-xs;
+  height: variables.$icon-size-xs;
+}
+
+.shelf-amount {
+  font-size: variables.$font-size-m;
+  font-weight: 600;
+  color: variables.$color-accent-1;
+}
+
+@media screen and (max-width: breakpoints.$tablet) {
+  :host {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: breakpoints.$mobile) {
+  :host {
+    display: flex;
+    border: $cabinet-border;
+    border-radius: variables.$border-radius-s;
+    background-color: variables.$color-bg-01;
+  }
+}
