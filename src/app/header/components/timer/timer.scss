@@ -1,9 +1,14 @@
 @use 'variables';
 @use 'breakpoints';
+@use 'mixins';
 
 $timer-info-gap: 4px;
 $timer-bar-width: 120px;
 $timer-bar-height: 6px;
+
+.icon {
+  @include mixins.header-icon;
+}
 
 .timer-container {
   display: flex;
