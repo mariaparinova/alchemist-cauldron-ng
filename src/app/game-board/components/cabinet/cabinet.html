@@ -1,0 +1,40 @@
+@for (_ of shelvesAmount(); track $index) {
+  @if (false) {
+    <div class="shelf"></div>
+  } @else {
+    <div class="shelf">
+      <button class="button shelf-button" type="button">
+        <img
+          class="icon shelf-icon"
+          src="/assets/icons/ingredients/dragon-tears.svg"
+          alt="Dragon Tears"
+        />
+      </button>
+      <div class="shelf-info">
+        <span class="shelf-name">Dragon Tears</span>
+        <div class="shelf-details">
+          <div class="shelf-stat">
+            <img
+              class="shelf-stat-icon"
+              src="/assets/icons/temperature.svg"
+              alt="Temperature"
+            /><span>25</span>
+          </div>
+          <div class="shelf-stat">
+            <img class="shelf-stat-icon" src="/assets/icons/density.svg" alt="Density" /><span
+              >8</span
+            >
+          </div>
+          <div class="shelf-stat">
+            <img
+              class="shelf-stat-icon"
+              src="/assets/icons/magic-power.svg"
+              alt="Magic Power"
+            /><span>10</span>
+          </div>
+        </div>
+      </div>
+      <div class="shelf-amount">13</div>
+    </div>
+  }
+}
