@@ -1,4 +1,4 @@
-import { Service, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 import { GameState, IsBrewSuccessfulParams } from './game-service.models';
 import { Ingredient, ingredients } from '../../data/ingredients';
 import { CauldronStats } from '../../models/models';
@@ -27,6 +27,30 @@ export class GameService {
 
   private readonly gameState = signal<GameState>(this.getInitGameState());
 
+  readonly status = computed(() => this.gameState().status);
+  readonly score = computed(() => this.gameState().score);
+  readonly timeLeft = computed(() => this.gameState().timeLeft);
+  readonly endTime = computed(() => this.gameState().endTime);
+  readonly lives = computed(() => this.gameState().lives);
+  readonly activeRecipe = computed(() => this.gameState().activeRecipe);
+  readonly cauldronIngredients = computed(() => this.gameState().cauldronIngredients);
+  readonly shelfStock = computed(() => this.gameState().shelfStock);
+  readonly difficulty = computed(() => this.gameState().difficulty);
+
+  readonly cauldronStats = computed(() => this.calculateCauldron(this.cauldronIngredients()));
+
+  readonly canBrew = computed(() =>
+    Boolean(
+      this.status() === 'playing' && this.activeRecipe() && this.cauldronIngredients().length,
+    ),
+  );
+
+  readonly isCauldronFull = computed(
+    () =>
+      this.cauldronIngredients().length >=
+      difficultyTable[this.difficulty()].maxIngredientsInCauldron,
+  );
+
   private calculateCauldron(ingredients: Ingredient[]) {
     const calculatedIngredients: CauldronStats = {
       temperature: 0,
@@ -45,13 +69,11 @@ export class GameService {
 
   private isBrewSuccessful(params: IsBrewSuccessfulParams) {
     const { stats, recipe, tolerance } = params;
-
     const statKeys: (keyof CauldronStats)[] = ['temperature', 'density', 'magicPower'];
 
     return statKeys.every((key) => {
       const { min, max } = recipe[key];
       const value = stats[key];
-
       return value >= min - tolerance && value <= max + tolerance;
     });
   }
@@ -74,6 +96,7 @@ export class GameService {
 
   private generateStock() {
     const shelfStock: Record<string, number> = {};
+
     ingredients.forEach((ingredient) => {
       shelfStock[ingredient.id] = getRandomNumber({ min: this.minStock, max: this.maxStock });
     });
@@ -99,5 +122,57 @@ export class GameService {
     });
   }
 
-  brew() {}
+  addIngredient(ingredientId: string) {
+    const ingredient = ingredients.find((item) => item.id === ingredientId);
+    const stock = this.shelfStock()[ingredientId] ?? 0;
+
+    if (!ingredient || this.status() !== 'playing' || stock < 1 || this.isCauldronFull()) {
+      return false;
+    }
+
+    this.gameState.update((state): GameState => ({
+      ...state,
+      shelfStock: { ...state.shelfStock, [ingredientId]: stock - 1 },
+      cauldronIngredients: [...state.cauldronIngredients, ingredient],
+    }));
+
+    return true;
+  }
+
+  brew() {
+    const activeRecipe = this.activeRecipe();
+
+    if (!this.canBrew() || !activeRecipe) {
+      return null;
+    }
+
+    const { recipeTolerance, scorePerBrew } = difficultyTable[this.difficulty()];
+    const isSuccess = this.isBrewSuccessful({
+      stats: this.cauldronStats(),
+      recipe: activeRecipe,
+      tolerance: recipeTolerance,
+    });
+
+    this.gameState.update((state): GameState => {
+      const score = isSuccess ? state.score + scorePerBrew : state.score;
+      const lives = isSuccess ? state.lives : state.lives - 1;
+      const isCabinetEmpty = Object.values(state.shelfStock).every((stock) => stock === 0);
+      const isGameOver = isCabinetEmpty || lives === 0;
+      const nextRecipe =
+        isSuccess && !isGameOver
+          ? this.pickRecipe({ difficulty: state.difficulty, excludeId: activeRecipe.id })
+          : state.activeRecipe;
+
+      return {
+        ...state,
+        status: isGameOver ? 'game-over' : state.status,
+        score,
+        lives,
+        activeRecipe: nextRecipe,
+        cauldronIngredients: [],
+      };
+    });
+
+    return isSuccess;
+  }
 }
