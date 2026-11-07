@@ -45,10 +45,12 @@ export class GameService {
     ),
   );
 
+  readonly maxIngredientsInCauldron = computed(
+    () => difficultyTable[this.difficulty()].maxIngredientsInCauldron,
+  );
+
   readonly isCauldronFull = computed(
-    () =>
-      this.cauldronIngredients().length >=
-      difficultyTable[this.difficulty()].maxIngredientsInCauldron,
+    () => this.cauldronIngredients().length >= this.maxIngredientsInCauldron(),
   );
 
   private calculateCauldron(ingredients: Ingredient[]) {
@@ -174,5 +176,36 @@ export class GameService {
     });
 
     return isSuccess;
+  }
+
+  pauseGame() {
+    if (this.status() !== 'playing') {
+      return;
+    }
+
+    this.gameState.update((state): GameState => ({
+      ...state,
+      status: 'paused',
+      endTime: null,
+    }));
+  }
+
+  resumeGame() {
+    if (this.status() !== 'paused') {
+      return;
+    }
+
+    this.gameState.update((state): GameState => ({
+      ...state,
+      status: 'playing',
+      endTime: Date.now() + state.timeLeft * 1000,
+    }));
+  }
+
+  exitToMenu() {
+    this.gameState.update((state): GameState => ({
+      ...this.getInitGameState(),
+      difficulty: state.difficulty,
+    }));
   }
 }
