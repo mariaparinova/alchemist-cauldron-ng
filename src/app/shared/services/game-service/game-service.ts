@@ -1,13 +1,16 @@
-import { computed, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import { GameState, IsBrewSuccessfulParams } from './game-service.models';
 import { Ingredient, ingredients } from '../../data/ingredients';
 import { CauldronStats } from '../../models/models';
 import { Difficulty, difficultyTable } from '../../data/difficulty';
 import { Recipe, recipes } from '../../data/recipes';
 import { getRandomNumber } from '../../utils/numbers';
+import { TimerService } from '../timer-service/timer-service';
 
 @Service()
 export class GameService {
+  private readonly timerService = inject(TimerService);
+
   private readonly minStock = 2;
   private readonly maxStock = 15;
 
@@ -115,7 +118,7 @@ export class GameService {
         status: 'playing',
         score: 0,
         timeLeft: startingTime,
-        endTime: Date.now() + startingTime * 1000,
+        endTime: this.timerService.calculateEndTime(startingTime),
         lives,
         activeRecipe: this.pickRecipe({ difficulty: state.difficulty }),
         cauldronIngredients: [],
@@ -148,7 +151,8 @@ export class GameService {
       return null;
     }
 
-    const { recipeTolerance, scorePerBrew } = difficultyTable[this.difficulty()];
+    const { recipeTolerance, scorePerBrew, timeBonusPerBrew, startingTime } =
+      difficultyTable[this.difficulty()];
     const isSuccess = this.isBrewSuccessful({
       stats: this.cauldronStats(),
       recipe: activeRecipe,
@@ -164,9 +168,18 @@ export class GameService {
         isSuccess && !isGameOver
           ? this.pickRecipe({ difficulty: state.difficulty, excludeId: activeRecipe.id })
           : state.activeRecipe;
+      const time =
+        isSuccess && state.endTime !== null
+          ? this.timerService.addTimeBonus({
+              endTime: state.endTime,
+              bonus: timeBonusPerBrew,
+              maxTime: startingTime,
+            })
+          : { endTime: state.endTime, timeLeft: state.timeLeft };
 
       return {
         ...state,
+        ...time,
         status: isGameOver ? 'game-over' : state.status,
         score,
         lives,
@@ -178,7 +191,29 @@ export class GameService {
     return isSuccess;
   }
 
+  updateTimeLeft() {
+    this.gameState.update((state): GameState => {
+      if (state.status !== 'playing' || state.endTime === null) {
+        return state;
+      }
+
+      const timeLeft = this.timerService.calculateTimeLeft(state.endTime);
+
+      return {
+        ...state,
+        timeLeft,
+        status: timeLeft === 0 ? 'game-over' : state.status,
+      };
+    });
+  }
+
   pauseGame() {
+    if (this.status() !== 'playing') {
+      return;
+    }
+
+    this.updateTimeLeft();
+
     if (this.status() !== 'playing') {
       return;
     }
@@ -198,7 +233,7 @@ export class GameService {
     this.gameState.update((state): GameState => ({
       ...state,
       status: 'playing',
-      endTime: Date.now() + state.timeLeft * 1000,
+      endTime: this.timerService.calculateEndTime(state.timeLeft),
     }));
   }
 
