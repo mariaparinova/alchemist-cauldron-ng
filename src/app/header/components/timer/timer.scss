@@ -1,0 +1,109 @@
+@use 'variables';
+@use 'breakpoints';
+@use 'mixins';
+
+$timer-info-gap: 4px;
+$timer-bar-width: 120px;
+$timer-bar-height: 6px;
+$dialog-padding: 32px 48px;
+$dialog-gap: 24px;
+$dialog-actions-gap: 16px;
+$dialog-button-width: 220px;
+
+.icon {
+  @include mixins.header-icon;
+}
+
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pause-container {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+}
+
+.timer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $timer-info-gap;
+}
+
+.timer-bar {
+  width: $timer-bar-width;
+  height: $timer-bar-height;
+  overflow: hidden;
+  background-color: variables.$color-bg-01;
+  border-radius: variables.$border-radius-xs;
+}
+
+.timer-bar-fill {
+  width: 0;
+  height: 100%;
+  background-color: variables.$color-accent-1;
+  transition: width 0.25s linear;
+}
+
+.timer-warning {
+  color: variables.$color-fail;
+
+  .timer-bar-fill {
+    background-color: variables.$color-fail;
+  }
+}
+
+.dialog {
+  margin: auto;
+  padding: $dialog-padding;
+  background-color: variables.$color-bg;
+  border: 1px solid variables.$color-border;
+  border-radius: variables.$border-radius-s;
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $dialog-gap;
+  }
+
+  &::backdrop {
+    background-color: variables.$color-backdrop-06;
+    backdrop-filter: variables.$backdrop-blur;
+  }
+}
+
+.dialog-title {
+  color: variables.$color-text;
+  font-size: variables.$font-size-m;
+  text-transform: uppercase;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $dialog-actions-gap;
+}
+
+.button.dialog-button {
+  width: $dialog-button-width;
+}
+
+@media screen and (max-width: breakpoints.$mobile) {
+  .pause-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timer-container {
+    gap: 4px;
+  }
+
+  .timer-icon {
+    display: none;
+  }
+}

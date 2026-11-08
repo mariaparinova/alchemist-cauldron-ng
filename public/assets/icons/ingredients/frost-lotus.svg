@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-full h-full">
+    <!-- Outer Frost Aura & Glow Base -->
+    <ellipse cx="32" cy="46" rx="20" ry="8" fill="#38BDF8" opacity="0.25"/>
+    <circle cx="32" cy="32" r="26" fill="#0284C7" opacity="0.1"/>
+
+    <!-- Outer Crystalline Petals -->
+    <path d="M32 10C24 22 14 28 8 36C18 38 28 36 32 48C36 36 46 38 56 36C50 28 40 22 32 10Z" fill="#0284C7"/>
+    <path d="M32 14C26 24 18 29 12 35C20 37 28 35 32 45C36 35 44 37 52 35C46 29 38 24 32 14Z" fill="#0EA5E9"/>
+
+    <!-- Mid Layer Sharp Petals -->
+    <path d="M32 18C20 26 18 38 14 42C24 43 30 38 32 50C34 38 40 43 50 42C46 38 44 26 32 18Z" fill="#38BDF8"/>
+    <path d="M32 20L20 38C26 39 30 36 32 46C34 36 38 39 44 38L32 20Z" fill="#7DD3FC"/>
+
+    <!-- Inner Core & Center Petals -->
+    <path d="M32 22C28 30 24 34 22 40C27 40 30 36 32 44C34 36 37 40 42 40C40 34 36 30 32 22Z" fill="#BAE6FD"/>
+    <polygon points="32,24 28,34 32,38 36,34" fill="#E0F2FE"/>
+
+    <!-- Frost Shimmer Accents & Crystals -->
+    <circle cx="32" cy="30" r="2.5" fill="#FFFFFF"/>
+    <circle cx="20" cy="28" r="1.5" fill="#E0F2FE" opacity="0.8"/>
+    <circle cx="44" cy="28" r="1.5" fill="#E0F2FE" opacity="0.8"/>
+    <circle cx="32" cy="12" r="1" fill="#FFFFFF"/>
+    <circle cx="12" cy="38" r="1" fill="#FFFFFF"/>
+    <circle cx="52" cy="38" r="1" fill="#FFFFFF"/>
+
+    <!-- Snowflake Cross Accent -->
+    <path d="M32 26V34M28 30H36" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/>
+</svg>

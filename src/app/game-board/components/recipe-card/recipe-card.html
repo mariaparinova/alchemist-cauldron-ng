@@ -1,0 +1,37 @@
+@let recipe = activeRecipe();
+
+<div class="recipe">
+  <span class="recipe-heading">Recipe</span>
+
+  @if (recipe) {
+    <h2 class="recipe-name">{{ recipe.name }}</h2>
+    <div class="recipe-details">
+      <div class="recipe-row">
+        <img class="recipe-icon" src="/assets/icons/temperature.svg" alt="Temperature" /><span
+          class="recipe-label"
+          >Temperature</span
+        ><span class="recipe-range"
+          >{{ recipe.temperature.min }} – {{ recipe.temperature.max }}</span
+        >
+      </div>
+      <div class="recipe-row">
+        <img class="recipe-icon" src="/assets/icons/density.svg" alt="Density" /><span
+          class="recipe-label"
+          >Density</span
+        ><span class="recipe-range">{{ recipe.density.min }} – {{ recipe.density.max }}</span>
+      </div>
+      <div class="recipe-row">
+        <img class="recipe-icon" src="/assets/icons/magic-power.svg" alt="Magic Power" /><span
+          class="recipe-label"
+          >Magic Power</span
+        ><span class="recipe-range">{{ recipe.magicPower.min }} – {{ recipe.magicPower.max }}</span>
+      </div>
+    </div>
+    <div class="recipe-row recipe-ingredients">
+      <span class="recipe-label">Ingredients</span>
+      <span class="recipe-ingredients-count" [class.warning]="isCauldronFull()"
+        >{{ cauldronIngredients().length }} / {{ maxIngredientsInCauldron() }}</span
+      >
+    </div>
+  }
+</div>

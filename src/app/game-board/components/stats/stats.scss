@@ -1,0 +1,52 @@
+@use 'variables';
+@use 'breakpoints';
+
+$stats-gap: 32px;
+$stats-gap-mobile: 24px;
+$stat-gap: 8px;
+$stat-value-width: 40px;
+
+:host {
+  display: flex;
+  gap: $stats-gap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $stat-gap;
+  font-size: variables.$font-size-m;
+  font-weight: 600;
+}
+
+.stat-value {
+  color: variables.$color-accent-1;
+}
+
+@media screen and (max-width: breakpoints.$tablet) {
+  .stat-label {
+    display: none;
+  }
+
+  .stat-value {
+    width: $stat-value-width;
+    text-align: center;
+  }
+
+  .icon {
+    width: variables.$icon-size-xs;
+    height: variables.$icon-size-xs;
+  }
+}
+
+@media screen and (max-width: breakpoints.$mobile) {
+  :host {
+    flex-direction: column;
+    gap: $stats-gap-mobile;
+  }
+
+  .stat {
+    flex-direction: row;
+  }
+}
