@@ -66,6 +66,10 @@ $recipe-min-height: 260px;
   font-weight: 600;
 }
 
+.recipe-ingredients-count.warning {
+  color: variables.$color-fail;
+}
+
 @media screen and (max-width: breakpoints.$mobile) {
   .recipe {
     min-height: 178px;

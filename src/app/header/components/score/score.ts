@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { GameService } from '../../../shared/services/game-service/game-service';
 
 @Component({
   imports: [],
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './score.scss',
   templateUrl: './score.html',
 })
-export class Score {}
+export class Score {
+  protected readonly gameService = inject(GameService);
+}
