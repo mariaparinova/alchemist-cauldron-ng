@@ -1,23 +1,38 @@
-@let isGameActive = gameService.status() === 'playing' || gameService.status() === 'paused';
-
 <div class="pause-container">
   <button
     type="button"
     class="button icon-button"
-    [hidden]="!isGameActive"
-    (click)="gameService.pauseGame()"
+    [hidden]="!isGameActive()"
+    (click)="pause(pauseDialog)"
     aria-label="Pause"
   >
     <img class="icon icon-button-image" src="/assets/icons/pause.svg" alt="Pause" />
   </button>
 </div>
 
-<div class="timer-container">
+<div class="timer-container" [class.timer-warning]="isLowTime()">
   <img class="icon timer-icon" src="/assets/icons/clock.svg" alt="Timer" />
   <div class="timer-info">
     <div class="timer">{{ formatTime(gameService.timeLeft()) }}</div>
     <div class="timer-bar">
-      <div class="timer-bar-fill"></div>
+      <div class="timer-bar-fill" [style.width.%]="timeProgress()"></div>
     </div>
   </div>
 </div>
+
+<dialog
+  #pauseDialog
+  class="dialog"
+  (cancel)="onDialogCancel({ event: $event, dialog: pauseDialog })"
+  (document:visibilitychange)="onVisibilityChange(pauseDialog)"
+>
+  <span class="dialog-title">Game Paused</span>
+  <div class="dialog-actions">
+    <button type="button" class="button primary dialog-button" (click)="resume(pauseDialog)">
+      Resume
+    </button>
+    <button type="button" class="button primary dialog-button" (click)="exit(pauseDialog)">
+      Exit
+    </button>
+  </div>
+</dialog>

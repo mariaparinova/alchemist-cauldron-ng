@@ -5,6 +5,10 @@
 $timer-info-gap: 4px;
 $timer-bar-width: 120px;
 $timer-bar-height: 6px;
+$dialog-padding: 32px 48px;
+$dialog-gap: 24px;
+$dialog-actions-gap: 16px;
+$dialog-button-width: 220px;
 
 .icon {
   @include mixins.header-icon;
@@ -51,6 +55,42 @@ $timer-bar-height: 6px;
   .timer-bar-fill {
     background-color: variables.$color-fail;
   }
+}
+
+.dialog {
+  margin: auto;
+  padding: $dialog-padding;
+  background-color: variables.$color-bg;
+  border: 1px solid variables.$color-border;
+  border-radius: variables.$border-radius-s;
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $dialog-gap;
+  }
+
+  &::backdrop {
+    background-color: variables.$color-backdrop-06;
+    backdrop-filter: variables.$backdrop-blur;
+  }
+}
+
+.dialog-title {
+  color: variables.$color-text;
+  font-size: variables.$font-size-m;
+  text-transform: uppercase;
+}
+
+.dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $dialog-actions-gap;
+}
+
+.button.dialog-button {
+  width: $dialog-button-width;
 }
 
 @media screen and (max-width: breakpoints.$mobile) {
