@@ -1,40 +1,51 @@
-@for (_ of shelvesAmount(); track $index) {
-  @if (false) {
-    <div class="shelf"></div>
-  } @else {
-    <div class="shelf">
-      <button class="button shelf-button" type="button">
+@let stock = shelfStock();
+
+@for (ingredient of ingredientsList; track ingredient.id) {
+  @let ingredientStock = stock[ingredient.id];
+  @let isIngredientDisabled = isLocked() || !ingredientStock;
+
+  @if (!isGameStatusMenu()) {
+    <div class="shelf" [class.shelf-out-of-stock]="isIngredientDisabled">
+      <button
+        class="button shelf-button"
+        (click)="gameService.addIngredient(ingredient.id)"
+        [disabled]="isIngredientDisabled"
+        type="button"
+      >
         <img
-          class="icon shelf-icon"
-          src="/assets/icons/ingredients/dragon-tears.svg"
-          alt="Dragon Tears"
+          class="icon"
+          [class.shelf-icon-hidden]="!ingredientStock"
+          src="/assets/icons/ingredients/{{ ingredient.icon }}.svg"
+          alt="{{ ingredient.name }}"
         />
       </button>
       <div class="shelf-info">
-        <span class="shelf-name">Dragon Tears</span>
+        <span class="shelf-name">{{ ingredient.name }}</span>
         <div class="shelf-details">
           <div class="shelf-stat">
             <img
               class="shelf-stat-icon"
               src="/assets/icons/temperature.svg"
               alt="Temperature"
-            /><span>25</span>
+            /><span>{{ ingredient.temperature }}</span>
           </div>
           <div class="shelf-stat">
-            <img class="shelf-stat-icon" src="/assets/icons/density.svg" alt="Density" /><span
-              >8</span
-            >
+            <img class="shelf-stat-icon" src="/assets/icons/density.svg" alt="Density" /><span>{{
+              ingredient.density
+            }}</span>
           </div>
           <div class="shelf-stat">
             <img
               class="shelf-stat-icon"
               src="/assets/icons/magic-power.svg"
               alt="Magic Power"
-            /><span>10</span>
+            /><span>{{ ingredient.magicPower }}</span>
           </div>
         </div>
       </div>
-      <div class="shelf-amount">13</div>
+      <div class="shelf-amount">{{ ingredientStock }}</div>
     </div>
+  } @else {
+    <div class="shelf"></div>
   }
 }

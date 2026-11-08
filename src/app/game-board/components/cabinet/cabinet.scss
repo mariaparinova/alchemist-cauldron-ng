@@ -80,6 +80,10 @@ $shelf-stat-padding: 2px 8px 2px 0;
   color: variables.$color-accent-1;
 }
 
+.shelf-icon-hidden {
+  visibility: hidden;
+}
+
 @media screen and (max-width: breakpoints.$tablet) {
   :host {
     display: grid;

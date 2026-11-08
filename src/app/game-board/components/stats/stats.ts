@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { GameService } from '../../../shared/services/game-service/game-service';
 
 @Component({
   imports: [],
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './stats.scss',
   templateUrl: './stats.html',
 })
-export class Stats {}
+export class Stats {
+  private readonly gameService = inject(GameService);
+  protected readonly stats = this.gameService.cauldronStats;
+}

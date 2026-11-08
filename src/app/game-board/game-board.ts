@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Cabinet } from './components/cabinet/cabinet';
-import { Recipe } from './components/recipe/recipe';
+import { RecipeCard } from './components/recipe-card/recipe-card';
 import { Stats } from './components/stats/stats';
 
 @Component({
-  imports: [Cabinet, Recipe, Stats],
+  imports: [Cabinet, RecipeCard, Stats],
   selector: 'app-game-board',
   styleUrl: './game-board.scss',
   templateUrl: './game-board.html',
